@@ -2,27 +2,124 @@
 <html lang="en">
 <head>
         <meta charset="utf-8">
-        <title>Assignment 6 &laquo; Data Visualization Dashboard&raquo;</title>
+        <title>&laquo; Video Game Data Visualization Dashboard &raquo;</title>
         <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="main.css"/>
-        <!--Feel free to add more CSS files as needed-->
         <script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
     </head>
 <body>
     <div class="header">
-        <h3>Assignment 6 &laquo; Data Visualization Dashboard &raquo;</h3>
+        <h3>&laquo; Video Game Data Visualization Dashboard &raquo;</h3>
     </div>
-    <!--  We included a basic HTML structure for the 3 graphs here. Feel free to change this if you'd like  -->
-    <div class="row">
-        <div class="col-lg-6">
-            <div id="graph1"></div>
-            <div id="graph2"></div><br/>
+    <div>
+        <div class="col-xs-2">
+          <label for="year">Select a Year:</label>
+          <input class="form-control" id="year" placeholder="e.g. 2006">
+          <button type="button" class="btn btn-primary" onclick="setYearData('Name')">Enter</button>
+          <button type="button" class="btn btn-dark" onclick="setData('Name')">Reset</button>
         </div>
-        <div class="col-lg-6">
-            <div id="graph3"></div>
-        </div>
+        <div id="graph1"></div><br/>
     </div>
-    <!--Feel free to add more JavaScript files as needed-->
+    <div>
+        <div class="col-xs-2" style="float: right;">
+          <label for="region">Select a Region:</label>
+          <select class="form-control" id="region" onchange="setRegionData('Genre')">
+            <option value="NA_Sales">North America</option>
+            <option value="EU_Sales">Europe</option>
+            <option value="JP_Sales">Japan</option>
+            <option value="Other_Sales">Other</option>
+            <option value="Global_Sales">Global</option>
+          </select>
+        </div>
+        <div id="tooltip" style="opacity: 0;">
+          <p><strong id="genre-title">Important Label Heading</strong></p>
+          <p>$<span id="genre-sales"></span>M</p>
+        </div>
+        <div id="graph2"></div><br/>
+    </div>
+    <div>
+        <div id="graph3"></div>
+    </div>
+    <br/>
+    <div class="written-questions">
+      <ol>
+        <li>
+          <strong>How My Dashboard Answers The Questions</strong>
+          <div>
+            My dashboard dynamically shows the top 10 video games of all time
+            or the top 10 video games for a specific year in the first bar chart,
+            along with the sales for each of the games in the top 10.
+            My dashboard also dynamically shows the genre sales broken down for
+            each region in the pie chart, which, on hover, shows the genre title
+            and sales for that genre (please hover before selecting a region).
+            Finally, the second bar plot statically shows the top publisher for
+            each genre along with how much of that genre that publisher sold globally.
+          </div>
+        </li>
+        <li>
+          <strong>3 Reasons Why D3 Was Helpful</strong>
+          <ol>
+            <li>
+              D3 allowed me to make high resolution charts that can't be achieved
+              with less syntactically complicated resources like Matplotlib.
+            </li>
+            <li>
+              D3 allowed me to easily include bright color schemes which make the
+              visualizations more appealing and accessible.
+            </li>
+            <li>
+              Because D3 is in Javascript, I was able to easily add interactivity
+              to my dashboard, which makes it possible for one graph to answer
+              a broad question.
+            </li>
+          </ol>
+        </li>
+        <li>
+          <strong>3 Reasons Why D3 Would Not Be The Best Data Visualization Tool</strong>
+          <ol>
+            <li>
+              D3 is syntactically complicated so you need a lot more code to make
+              a legible plot; D3 is not ideal for quick visualizations.
+            </li>
+            <li>
+              D3 supports many complex chart types, so people may be inclined to
+              choose a fancier plot over the plot that most clearly conveys the data;
+              D3 is not ideal for datasets that should be visualized with simple charts.
+            </li>
+            <li>
+              D3 is a Javascript library so it is not ideal for data scientists who
+              don't know the language.
+            </li>
+          </ol>
+        </li>
+        <li>
+          Users with no visual disabilities will find this dashboard accessible and users
+          who are blind or have certain types of colorblindness may find this dashboard more
+          difficult to use. As discussed in "A Comprehensive Guide to Accessible Data Visualization",
+          blind users rely on screen readers when navigating the internet, and my dashboard
+          currently does not utilize alt text. Another thing this article touched on was how
+          certain colorblind users see different palettes. I used contrasting color and text
+          in an effort to be more accessible, but there are potentially users with certain types
+          of colorblindness who may not see the contrast. Some actions that I could take to improve
+          accessibility are including alt text, including the raw dataset in such a way that the screen
+          reader can read it, and changing the design or chart type of the third plot so that it doesn't
+          rely on a legend.
+        </li>
+        <li>
+          The first stage of my design and implementation process was considering what chart types
+          to use to answer the questions at hand. I opted for simple charts, which I think is generally
+          a good protocol. However, there are definitely charts that could make my dashboard more accessible
+          but, frankly, I was limited by my time and skill. With more time and experience with D3, I
+          believe I could utilize chart types like Map or Circular Barplot. In the implementation stage,
+          I could have taken steps to include alt text, but I didn't, as I was focused on basic functionality.
+          The final stage was revision, and with enough time, I could add alt text or change chart types
+          or include the raw data.
+        </li>
+      </ol>
+    </div>
     <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="barPlot.js"></script>
+    <script type="text/javascript" src="pieChart.js"></script>
+    <script type="text/javascript" src="barPlot2.js"></script>
 </body>
 </html>
